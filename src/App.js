@@ -7,9 +7,7 @@ function App() {
   const [formInfo, setFormInfo] = useState({
     name: "",
     surname: "",
-    address: "",
-    email: "",
-    car: "",
+    work: "",
   });
   const [saveInfo, setSaveInfo] = useState([]);
 
@@ -18,9 +16,9 @@ function App() {
   }
 
   function handleSubmit(event) {
-    const { name, surname, address, email, car } = formInfo;
+    const { name, surname, work } = formInfo;
     event.preventDefault();
-    const newInfo = { ...formInfo, name, surname, address, email, car };
+    const newInfo = { ...formInfo, name, surname, work };
     setSaveInfo([...saveInfo, newInfo]);
     console.log(saveInfo);
   }
@@ -62,79 +60,15 @@ function App() {
       {saveInfo.map((info) => {
         return (
           <div>
+            <table></table>
             <h2>{info.name}</h2>
             <h2>{info.surname}</h2>
-            <h2>{info.address}</h2>
-            <h2>{info.email}</h2>
-            <h2>{info.car}</h2>
+            <h2>{info.work}</h2>
           </div>
         );
       })}
     </div>
   );
 }
-// function App() {
-//   const FormList = useSelector((state) => state.Form.FormList);
-//   console.log("Formlist", FormList);
-//   const dispatch = useDispatch();
-//   const [Form, setForm] = useState("");
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     dispatch(addForm(Form));
-//     setForm("");
-//   };
-
-//   const handleDelete = (key) => {
-//     return FormList.filter((list) => list.key !== key);
-//   };
-
-//   return (
-//     <div className="App">
-//       <h1>Work register</h1>
-//       <form onSubmit={handleSubmit}>
-//         <div>
-//           Name:
-//           <input
-//             type="FormRegisterapp"
-//             onChange={(e) => setForm(e.target.value)}
-//             placeholder=""
-//             value={Form}
-//           />
-//           Surname:
-//           <input
-//             type="FormRegisterapp"
-//             onChange={(e) => setForm(e.target.value)}
-//             placeholder=""
-//             value={Form}
-//           />
-//           Work:
-//           <input
-//             type="FormRegisterapp"
-//             onChange={(e) => setForm(e.target.value)}
-//             placeholder=""
-//             value={Form}
-//           />
-//           <input type="button" value="Submit" onClick={handleSubmit} />
-//         </div>
-//       </form>
-//       {FormList &&
-//         FormList.map((Form) => {
-//           return (
-//             <div key={Form.key}>
-//               <h2>
-//                 <button
-//                   onClick={() => dispatch(deleteForm(handleDelete(Form.key)))}
-//                 >
-//                   delete
-//                 </button>
-//               </h2>
-//               <h1>{Form.name}</h1>
-//             </div>
-//           );
-//         })}
-//     </div>
-//   );
-// }
 
 export default App;
