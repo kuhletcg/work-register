@@ -1,72 +1,81 @@
 import { useState } from "react";
 import "./App.css";
 import { useSelector, useDispatch } from "react-redux";
-import { addForm, deleteForm } from "./redux/actions/Form";
+import { addForm, deleteForm, editForm } from "./redux/actions/Form";
 
 function App() {
-  const [formInfo, setFormInfo] = useState({
-    name: "",
-    surname: "",
-    work: "",
-  });
-  const [saveInfo, setSaveInfo] = useState([]);
+  const FormList = useSelector((state) => state.Form.FormList.FormList);
+  console.log("Formlist", FormList);
+  const dispatch = useDispatch();
+  const [Form, setForm] = useState("");
 
-  function handleChange(event) {
-    setFormInfo({ ...formInfo, [event.target.name]: event.target.value });
-  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(addForm(Form));
+    setForm("");
+  };
 
-  function handleSubmit(event) {
-    const { name, surname, work } = formInfo;
-    event.preventDefault();
-    const newInfo = { ...formInfo, name, surname, work };
-    setSaveInfo([...saveInfo, newInfo]);
-    console.log(saveInfo);
-  }
+  const handleDelete = (key) => {
+    return FormList.filter((list) => list.key !== key);
+  };
+
+  const handleEdit = (key) => {
+    return FormList.filter((list) => list.key !== key);
+  };
 
   return (
-    <div className="wrapper">
-      <h2>Work register</h2>
+    <div className="App">
+      <h1>Work register</h1>
       <form onSubmit={handleSubmit}>
-        <label>
-          <p>Name</p>
+        <div>
+          {" "}
+          Name:
           <input
-            type="text"
-            name="name"
-            value={formInfo.name}
-            onChange={handleChange}
+            type="Formapp"
+            onChange={(e) => setForm(e.target.value)}
+            placeholder=""
+            value={Form}
           />
-        </label>
-        <label>
-          <p>Surname</p>
+          Surname:
           <input
-            type="text"
-            name="surname"
-            value={formInfo.surname}
-            onChange={handleChange}
+            type="Formapp"
+            onChange={(e) => setForm(e.target.value)}
+            placeholder=""
+            value={Form}
           />
-        </label>
-        <label>
-          <p>Work</p>
+          Work:
           <input
-            type="address"
-            name="address"
-            value={formInfo.address}
-            onChange={handleChange}
+            type="Formapp"
+            onChange={(e) => setForm(e.target.value)}
+            placeholder=""
+            value={Form}
           />
-        </label>
-        <button type="submit">Submit</button>
+          <input type="button" value="Submit" onClick={handleSubmit} />
+        </div>
       </form>
+      {FormList &&
+        FormList.map((Form) => {
+          return (
+            <div key={Form.key}>
+              <h2>
+                <button
+                  onClick={() => dispatch(deleteForm(handleDelete(Form.key)))}
+                >
+                  delete
+                </button>
 
-      {saveInfo.map((info) => {
-        return (
-          <div>
-            <table></table>
-            <h2>{info.name}</h2>
-            <h2>{info.surname}</h2>
-            <h2>{info.work}</h2>
-          </div>
-        );
-      })}
+                <button
+                  onClick={() => dispatch(editForm(handleEdit(Form.key)))}
+                >
+                  edit
+                </button>
+              </h2>
+              <h1>{Form.name}</h1>
+              <h1>{Form.surname}</h1>
+              <h1>{Form.work}</h1>
+            </div>
+          );
+        })}
     </div>
   );
 }
