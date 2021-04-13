@@ -5,7 +5,7 @@ import { addForm, deleteForm, editForm } from "./redux/actions/Form";
 
 function App() {
   const FormList = useSelector((state) => state.Form.FormList.FormList);
-  console.log("Formlist", FormList);
+  console.log("Formlist", FormList, FormList);
   const dispatch = useDispatch();
   const [Form, setForm] = useState("");
 
