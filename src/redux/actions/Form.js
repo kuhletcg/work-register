@@ -1,9 +1,9 @@
 import { ADD_FORM, DELETE_FORM, EDIT_FORM } from "../actionTypes/Form";
 
-export const addForm = (Form) => {
+export const addForm = (form) => {
   return {
     type: ADD_FORM,
-    payload: Form,
+    payload: form,
   };
 };
 

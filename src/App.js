@@ -1,83 +1,73 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import { useSelector, useDispatch } from "react-redux";
-import { addForm, deleteForm, editForm } from "./redux/actions/Form";
+import { addForm } from "./redux/actions/Form";
 
 function App() {
-  const FormList = useSelector((state) => state.Form.FormList.FormList);
-  console.log("Formlist", FormList, FormList);
+  const FormList = useSelector((state) => state.Form.FormList);
+  console.log("formlist", FormList);
   const dispatch = useDispatch();
-  const [Form, setForm] = useState("");
+  const [form, setForm] = useState({ name: "", surname: "", work: "" });
+  console.log(form);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addForm(Form));
-    setForm("");
+    dispatch(addForm(form));
+    setForm({ name: "", surname: "", work: "" });
   };
 
-  const handleDelete = (key) => {
-    return FormList.filter((list) => list.key !== key);
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
-
-  const handleEdit = (key) => {
-    return FormList.filter((list) => list.key !== key);
-  };
-
   return (
-    <div className="App">
-      <h1>Work register</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          {" "}
-          Name:
+    <div className="Form">
+      <h2>Work register</h2>
+      <form className="Form" onSubmit={(e) => handleSubmit(e)}>
+        <label>
+          <p>Name</p>
           <input
-            type="Formapp"
-            onChange={(e) => setForm(e.target.value)}
-            placeholder=""
-            value={Form}
+            type="name"
+            name="name"
+            value={form.name}
+            onChange={handleChange}
           />
-          Surname:
+        </label>
+        <label>
+          <p>Surname</p>
           <input
-            type="Formapp"
-            onChange={(e) => setForm(e.target.value)}
-            placeholder=""
-            value={Form}
+            type="surname"
+            name="surname"
+            value={form.surname}
+            onChange={handleChange}
           />
-          Work:
+        </label>
+        <label>
+          <p>Work</p>
           <input
-            type="Formapp"
-            onChange={(e) => setForm(e.target.value)}
-            placeholder=""
-            value={Form}
+            type="work"
+            name="work"
+            value={form.work}
+            onChange={handleChange}
           />
-          <input type="button" value="Submit" onClick={handleSubmit} />
-        </div>
+        </label>
+        <button onClick="submit">Submit</button>
       </form>
-      {FormList &&
-        FormList.map((Form) => {
-          return (
-            <div key={Form.key}>
-              <h2>
-                <button
-                  onClick={() => dispatch(deleteForm(handleDelete(Form.key)))}
-                >
-                  delete
-                </button>
 
-                <button
-                  onClick={() => dispatch(editForm(handleEdit(Form.key)))}
-                >
-                  edit
-                </button>
-              </h2>
-              <h1>{Form.name}</h1>
-              <h1>{Form.surname}</h1>
-              <h1>{Form.work}</h1>
+      {FormList &&
+        FormList.map((form) => {
+          return (
+            <div key={form.key}>
+              <table>
+                <tr>
+                  <th>{form.name}</th>
+                  <th>{form.surname}</th>
+                  <th>{form.work}</th>
+                </tr>
+              </table>
             </div>
           );
         })}
     </div>
   );
 }
-
 export default App;
