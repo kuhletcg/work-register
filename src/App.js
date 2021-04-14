@@ -19,6 +19,7 @@ function App() {
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
+
   return (
     <div className="Form">
       <h2>Work register</h2>
