@@ -1,9 +1,14 @@
-import { ADD_FORM, DELETE_FORM, EDIT_FORM } from "../actionTypes/Form";
+import {
+  ADD_FORM,
+  DELETE_FORM,
+  EDIT_FORM,
+  COMPLETE_FORM,
+} from "../actionTypes/Form";
 
-export const addForm = (form) => {
+export const addForm = (Form) => {
   return {
     type: ADD_FORM,
-    payload: form,
+    payload: Form,
   };
 };
 
@@ -12,7 +17,12 @@ export const deleteForm = (key) => ({
   payload: key,
 });
 
-export const editForm = (key) => ({
+export const editForm = (Form) => ({
   type: EDIT_FORM,
-  payload: key,
+  payload: Form,
+});
+
+export const completeForm = (Form) => ({
+  type: COMPLETE_FORM,
+  payload: Form,
 });
