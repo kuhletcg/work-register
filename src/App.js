@@ -74,44 +74,44 @@ function App() {
           <button onClick={() => dispatch(editForm(handleEdit(Form.key)))}>
             Edit
           </button>
-
-          <input type="submit" value="Submit" />
+          <h1>
+            <input type="submit" value="Submit" />
+          </h1>
         </div>
       </form>
-      <table>
+      <table class="table">
         <thead>
           <tr>
             <th>Name</th>
             <th>surname</th>
             <th>work</th>
           </tr>
-          <tbody>
-            {FormList &&
-              FormList.map((form) => {
-                return (
-                  <tr key={form.key}>
-                    <td>{form.name.name}</td>
-                    <td>{form.name.surname}</td>
-                    <td>{form.name.work}</td>
-                    <button
-                      onClick={() =>
-                        dispatch(completeForm(handleComplete(form.key)))
-                      }
-                    >
-                      Complete{" "}
-                    </button>
-                    <button
-                      onClick={() =>
-                        dispatch(deleteForm(handleDelete(form.key)))
-                      }
-                    >
-                      delete{" "}
-                    </button>
-                  </tr>
-                );
-              })}
-          </tbody>
         </thead>
+        <tbody>
+          {FormList &&
+            FormList.map((form) => {
+              return (
+                <tr key={form.key}>
+                  <td>{form.name.name}</td>
+                  <td>{form.name.surname}</td>
+                  <td>{form.name.work}</td>
+                  <button
+                    onClick={() => dispatch(deleteForm(handleDelete(form.key)))}
+                  >
+                    delete{" "}
+                  </button>
+                  <button
+                    onClick={() =>
+                      dispatch(completeForm(handleComplete(form.key)))
+                    }
+                  >
+                    Complete{" "}
+                  </button>
+                </tr>
+              );
+            })}
+        </tbody>
+        {/* </thead> */}
       </table>
     </div>
   );
