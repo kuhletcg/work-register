@@ -38,8 +38,8 @@
 }
 
 h2 {
-  background-color: cornflowerblue;
-  color: black;
+  background-color: rgb(46, 57, 78);
+  color: white;
   text-align: center;
   font-size: 50px;
 }
@@ -58,7 +58,7 @@ th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: center;
-  background-color: #7c7f9c;
+  background-color: #313349;
   color: white;
   padding: 5px 5px;
 }
@@ -75,4 +75,36 @@ tr {
   border-collapse: collapse;
   border: 3px solid #ddd;
   width: 100%;
+}
+button {
+  font-size: 2rem;
+  border-radius: 0.5rem;
+  border: 0, 3rem #404040 solid;
+  background-color: white;
+  width: 15px 13px 15px 13px;
+  cursor: pointer;
+  margin: 3px;
+  padding: 0.3px 10px;
+}
+
+h1 {
+  font-size: 2rem;
+  border-radius: 0.5rem;
+  border: 0, 3rem #404040 solid;
+  background-color: white;
+  width: 15px 13px 15px 13px;
+  cursor: pointer;
+  margin: 3px;
+  padding: 0.3px 10px;
+}
+
+table,
+th,
+tr {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  padding: 5px 10px 5px 10px;
+  border: 2px solid black;
+  width: 50%;
 }
